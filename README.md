@@ -1,15 +1,15 @@
 ## Setup for system 
 
-1. install nix [installation](https://nixos.org/download/#nix-install-linux)
+1. install nix -> [installation-guide](https://nixos.org/download/#nix-install-linux)
 2. `nix-env -i direnv` 
 3. add `$HOME/.local/bin` to PATH enviroment variable
 
 
 ## Develoment
 1. Go to project directory `cd haskell-web`
-2. **Do it once** -> `stack install yesod-bin --install-ghc`
-3. Build libraries: `stack build`
-4. `direnv allow`
+2. `direnv allow`
+3. **Do it once** -> `stack install yesod-bin --install-ghc`
+4. Build libraries: `stack build`
 5. Start:
 ```
 stack exec -- yesod devel 
