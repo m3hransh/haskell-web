@@ -1,23 +1,16 @@
-## System setup
+## Setup for system 
 
-1. If you haven't already, [install Stack](https://haskell-lang.org/get-started)
-	* On POSIX (like MacOS) systems, this is usually `curl -sSL https://get.haskellstack.org/ | sh`
-2. Install the `yesod` command line tool: `stack install yesod-bin --install-ghc`
-3. **[For nix user only]**
-- add code below to file `.stack/config.yaml`:
-```
-nix:
-  enable: true
-  packages: [zlib.dev, zlib.out]
-```
-4. add `$HOME/.local/bin` to PATH enviroment variable
+1. install nix [installation](https://nixos.org/download/#nix-install-linux)
+2. `nix-env -i direnv` 
+3. add `$HOME/.local/bin` to PATH enviroment variable
 
 
 ## Develoment
 1. Go to project directory `cd haskell-web`
-2. `stack build`
+2. **Do it once** -> `stack install yesod-bin --install-ghc`
 3. Build libraries: `stack build`
-4. Start:
+4. `direnv allow`
+5. Start:
 ```
 stack exec -- yesod devel 
 # or this
