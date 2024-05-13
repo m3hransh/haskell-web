@@ -13,12 +13,13 @@
     {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages = with pkgs; [ 
-           haskell.compiler.ghc92
-           haskellPackages.haskell-language-server 
-           haskellPackages.stack
-           haskellPackages.zlib
-           ];
+          packages = with pkgs; [
+            haskell.compiler.ghc92
+            (haskell-language-server.override { supportedGhcVersions = [ "92" ]; })
+            haskellPackages.yesod-bin
+            haskellPackages.stack
+            haskellPackages.zlib
+          ];
           NIX_PATH = "nixpkgs=" + pkgs.path;
         };
       });
