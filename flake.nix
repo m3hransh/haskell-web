@@ -19,6 +19,7 @@
             haskellPackages.yesod-bin
             haskellPackages.stack
             haskellPackages.zlib
+            nodejs_22
           ];
           NIX_PATH = "nixpkgs=" + pkgs.path;
         };

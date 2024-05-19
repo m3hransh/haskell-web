@@ -1,6 +1,7 @@
 module Handler.Comment where
 
 import Import
+import Data.Aeson as Aeson
 
 postCommentR :: Handler Value
 postCommentR = do
@@ -14,3 +15,13 @@ postCommentR = do
 
     insertedComment <- runDB $ insertEntity comment'
     returnJson insertedComment
+
+
+getCommentR :: Handler Value
+getCommentR = do
+  -- Fetch comments from the database
+    comments <- runDB $ selectList [] [Desc CommentId]
+  -- Convert comments to JSON
+    let commentsJson = Aeson.toJSON comments
+  -- Return comments as JSON response
+    returnJson commentsJson
