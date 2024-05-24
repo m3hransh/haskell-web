@@ -1,8 +1,18 @@
-import Comment from "./components/Comments";
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import AboutMe from "./components/AboutMe";
+import Header from "./components/Header";
 const App = () => {
  
   return (
-    <Comment />
+    <>
+   <Router>
+      <Header />
+      <Routes>
+        <Route path="/about" element={<AboutMe name="zagrs" description="" questionText="" socialLink="" socialLinkText="" mainImageUrl="" />} />
+      </Routes>
+    </Router>
+
+    </>
   );
 }
 
