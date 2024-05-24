@@ -6,21 +6,21 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './error-page.tsx';
 import Developer from './routes/develoeprs.tsx';
 
-const router: any = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: 'developers/',
+        path: 'about/',
         element: <Developer />
       },
     ],
   },
   // {
   // path: '/about',
-  // element: <About />,
+  // element: <Developer />,
   //   },
   //   {
   // path: '/contact',
