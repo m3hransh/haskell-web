@@ -5,6 +5,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE ViewPatterns #-}
 {-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE ExplicitForAll #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 module Application
     ( getApplicationDev
@@ -24,7 +25,6 @@ module Application
 import Control.Monad.Logger                 (liftLoc, runLoggingT)
 import Database.Persist.Postgresql              (createPostgresqlPool, runSqlPool,
                                              pgConnStr, pgPoolSize, PostgresConf (pgConnStr, pgPoolSize))
-import Import
 import Language.Haskell.TH.Syntax           (qLocation)
 import Network.HTTP.Client.TLS              (getGlobalManager)
 import Network.Wai (Middleware)
@@ -40,15 +40,25 @@ import Network.Wai.Middleware.RequestLogger (Destination (Logger),
 import System.Log.FastLogger                (defaultBufSize, newStdoutLoggerSet,
                                              toLogStr)
 
+import ClassyPrelude.Yesod   
+import Model                 
+import Settings              
+import Yesod.Core.Types       (loggerSet)
+import Yesod.Default.Config2 
+
+-- Used only when in "auth-dummy-login" setting is enabled.
+
+import Foundation
 -- Import all relevant handler modules here.
 -- Don't forget to add new modules to your cabal file!
-import Handler.Common
-import Handler.Home
-import Handler.Comment
-import Handler.Profile
-import Handler.Yeganeh
-import Handler.Zahra
+import Handler.Role
 
+-- | The foundation datatype for your application. This can be a good place to
+-- keep settings and values requiring initialization before your application
+-- starts running, such as database connections. Every handler will have
+-- access to the data present here.
+
+-- | A convenient synonym for creating forms.
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
 -- comments there for more details.
