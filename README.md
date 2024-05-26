@@ -1,13 +1,19 @@
 ## Setup for system 
 
-1. install nix -> [installation-guide](https://nixos.org/download/#nix-install-linux)
+1. Install nix -> [installation-guide](https://nixos.org/download/#nix-install-linux)
 2. `nix-env -i direnv` 
-3. add `$HOME/.local/bin` to PATH enviroment variable
+3. Add `$HOME/.local/bin` to PATH enviroment variable
+4. Make sure to have docker compose (or docker-compose) installed
+5. Install npm on your machine
 
 
 ## Develoment
 1. Go to project directory `cd haskell-web`
 2. `direnv allow`
+
+### Backend
+1. `cd server`
+2. `docker-compose up -d`
 3. **Do it once** -> `stack install yesod-bin --install-ghc`
 4. Build libraries: `stack build`
 5. Start:
@@ -16,8 +22,13 @@ stack exec -- yesod devel
 # or this
 yesod devel
 ```
+### Frontend
+1. Install node modules `npm install`
+2. Run frontend `npm run dev`
 
 As your code changes, your site will be automatically recompiled and redeployed to localhost.
+
+> If the server got stuck do the `stack build`
 
 If you have trouble, refer to the [Yesod Quickstart guide](https://www.yesodweb.com/page/quickstart) for additional detail.
 ## Tests
