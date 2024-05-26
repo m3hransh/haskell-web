@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import hat from "/home/zaranix/haskell-web/client/src/assets/images/hat.png";
+import hat from "../assets/images/hat.png"
 
 const Navbar = () => {
   return (
     <header>
       <nav className=" border-gray-200 px-4 lg:px-6 py-2.5 bg-darkgray">
-        
+
         <div className="flex flex-wrap justify-between items-center mx-auto ">
           <Link to="/" className="flex items-center gap-1">
             <img src={hat} alt="logo" />
