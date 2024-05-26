@@ -1,7 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import hat from "../assets/images/hat.png"
 
 const Navbar = () => {
+  const location = useLocation();
+
+  const getLinkClass = (path: string) => {
+    return location.pathname === path
+      ? 'block py-2 pr-4 pl-3 text-white bg-gray-700 rounded lg:bg-transparent lg:text-white lg:p-0 dark:text-white'
+      : 'block py-2 pr-4 pl-3 text-gray-400 border-b border-gray-700 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent';
+  };
+  const items = [
+    { path: '/', text: 'Home' },
+    { path: '/about', text: 'About' },
+    { path: '/roles', text: 'Roles' },
+    { path: '/features', text: 'Features' },
+  ];
   return (
     <header>
       <nav className=" border-gray-200 px-4 lg:px-6 py-2.5 bg-darkgray">
@@ -21,18 +34,11 @@ const Navbar = () => {
           </div>
           <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              <li>
-                <Link to="/" className="block py-2 pr-4 pl-3 text-white rounded lg:bg-transparent lg:text-white lg:p-0 dark:text-white">Home</Link>
-              </li>
-              <li>
-                <Link to="/about" className="block py-2 pr-4 pl-3 text-gray-400 border-b border-gray-700 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent">About</Link>
-              </li>
-              <li>
-                <Link to="/roles" className="block py-2 pr-4 pl-3 text-gray-400 border-b border-gray-700 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent">Roles</Link>
-              </li>
-              <li>
-                <Link to="/features" className="block py-2 pr-4 pl-3 text-gray-400 border-b border-gray-700 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent">Features</Link>
-              </li>
+              {items.map((item) => (
+                <li key={item.path}>
+                  <Link to={item.path} className={getLinkClass(item.path)}>{item.text}</Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

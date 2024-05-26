@@ -48,6 +48,7 @@ import Yesod.Default.Config2
 
 -- Used only when in "auth-dummy-login" setting is enabled.
 
+import Seeder
 import Foundation
 -- Import all relevant handler modules here.
 -- Don't forget to add new modules to your cabal file!
@@ -97,6 +98,9 @@ makeFoundation appSettings = do
 
     -- Perform database migration using our application's logging settings.
     runLoggingT (runSqlPool (runMigration migrateAll) pool) logFunc
+
+    let seedDir = "seeds"
+    runSqlPool (loadSeedData seedDir) pool
 
     -- Return the foundation
     return $ mkFoundation pool

@@ -21,5 +21,6 @@ Role json
     avatar  Text Maybe
     mafia Bool
     desc Text Maybe
+    UniqueRole name
     deriving Eq
     deriving Show

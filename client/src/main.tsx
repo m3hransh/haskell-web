@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './error-page.tsx';
 import Developer from './routes/develoeprs.tsx';
 import Loginform from './components/Loginform.tsx';
+import Roles from './routes/roles.tsx';
 
 const router = createBrowserRouter([
   {
@@ -15,26 +16,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'about/',
-        element: <Developer />
+        element: <About />
       },
       {
         path: 'login/',
-        element:   <Loginform/>
+        element: <Loginform />
       },
+      { path: 'roles/', element: <Roles /> }
     ],
   },
-  // {
-  // path: '/about',
-  // element: <Developer />,
-  //   },
-  //   {
-  // path: '/contact',
-  // element: <Contact />,
-  //   },
-  //   {
-  // path: '/:catchAll',
-  // element: <NotFound />,
-  //   },
 ])
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
