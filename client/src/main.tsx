@@ -5,6 +5,7 @@ import Root from "./routes/root";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './error-page.tsx';
 import Developer from './routes/develoeprs.tsx';
+import Loginform from './components/Loginform.tsx';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: 'about/',
         element: <Developer />
+      },
+      {
+        path: 'login/',
+        element:   <Loginform/>
       },
     ],
   },
