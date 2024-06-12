@@ -99,8 +99,7 @@ makeFoundation appSettings = do
     -- Perform database migration using our application's logging settings.
     runLoggingT (runSqlPool (runMigration migrateAll) pool) logFunc
 
-    let seedDir = "seeds"
-    runSqlPool (loadSeedData seedDir) pool
+    runSqlPool (loadSeedData) pool
 
     -- Return the foundation
     return $ mkFoundation pool
